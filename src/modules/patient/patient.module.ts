@@ -6,10 +6,8 @@ import { PatientModel } from './entities/patient.model';
 import { PatientRepository } from './repositories/patient.repository';
 import { PatientUseCase } from './usecases/patient.usecase';
 @Module({
-  imports:[
-   SequelizeModule.forFeature([PatientModel])
-  ],
-  controllers: [PatientController], 
-  providers: [PatientService,PatientRepository,PatientUseCase],
+  imports: [SequelizeModule.forFeature([PatientModel])],
+  controllers: [PatientController],
+  providers: [PatientService, PatientRepository, PatientUseCase],
 })
 export class PatientModule {}

@@ -1,26 +1,30 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { PatientRepository } from '../repositories/patient.repository';
-import {CreateStudyDto,ListStudyDto,UpdateStudyDto,} from '../dto/patient.dto';
+import {
+  CreateStudyDto,
+  ListStudyDto,
+  UpdateStudyDto,
+} from '../dto/patient.dto';
 
 @Injectable()
 export class PatientUseCase {
   constructor(private readonly patientRepository: PatientRepository) {}
   async listexecute(payload: ListStudyDto) {
-    return  await this.patientRepository.findOne({
-      BleDevice: payload.bleDevice,
+    return await this.patientRepository.findOne({
+      BleDevice: payload.BleDevice,
     });
   }
   async execute(payload: CreateStudyDto) {
     const existing = await this.patientRepository.findOne({
-      BleDevice: payload.bleDevice,
+      BleDevice: payload.BleDevice,
     });
     if (existing) {
       throw new ConflictException(
-        `Patient with BLE Device ${payload.bleDevice} already exists`,
+        `Patient with BLE Device ${payload.BleDevice} already exists`,
       );
     }
     const data = {
-      BleDevice: payload.bleDevice,
+      BleDevice: payload.BleDevice,
       ...payload.patientInfo,
       ...payload.studyInfo,
       ...payload.stateInfo,
@@ -29,9 +33,9 @@ export class PatientUseCase {
     return this.patientRepository.create(data);
   }
   async update(payload: UpdateStudyDto) {
-    const { bleDevice, status, driveStoragePath } = payload;
+    const { BleDevice, status, DriveStoragePath } = payload;
     const existing = await this.patientRepository.findOne({
-      BleDevice: bleDevice,
+      BleDevice: BleDevice,
     });
     if (existing) {
       if (
@@ -45,10 +49,10 @@ export class PatientUseCase {
     }
 
     const updatedPatient = await this.patientRepository.updateByBleDevice(
-      bleDevice,
+      BleDevice,
       {
         status: status,
-        DriveStoragePath: driveStoragePath,
+        DriveStoragePath: DriveStoragePath,
       },
     );
     return updatedPatient;

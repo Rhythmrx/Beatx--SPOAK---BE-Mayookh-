@@ -1,4 +1,3 @@
-
 import {
   ExceptionFilter,
   Catch,
@@ -17,11 +16,11 @@ export class AllExceptionsFilter implements ExceptionFilter {
 
     const isHttpException = exception instanceof HttpException;
     const status = isHttpException
-      ? (exception as HttpException).getStatus()
+      ? exception.getStatus()
       : HttpStatus.INTERNAL_SERVER_ERROR;
 
     const message = isHttpException
-      ? (exception as HttpException).getResponse()
+      ? exception.getResponse()
       : 'Internal server error';
 
     this.logger.error({
@@ -37,7 +36,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
     response.status(status).json({
       status: 'error',
       message: normalizedMessage,
-
     });
   }
 }

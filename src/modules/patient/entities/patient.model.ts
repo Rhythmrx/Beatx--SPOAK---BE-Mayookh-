@@ -40,9 +40,9 @@ export class PatientModel extends Model<PatientModel> {
 
   @Column({ type: DataType.STRING })
   duration: string;
-  
+
   @Column({ type: DataType.STRING })
-  DriveStoragePath: string |null;
+  DriveStoragePath: string | null;
 
   @Column({ type: DataType.JSON })
   Paramaters: object;

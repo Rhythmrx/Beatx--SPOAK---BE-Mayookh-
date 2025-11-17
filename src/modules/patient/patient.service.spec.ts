@@ -7,14 +7,17 @@ describe('PatientService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [PatientService,{
-        provide:PatientUseCase,
-        useValue:{
-         createPatient: jest.fn(),
-          getPatients: jest.fn(),
-          getPatientById: jest.fn(),
-        }
-      }],
+      providers: [
+        PatientService,
+        {
+          provide: PatientUseCase,
+          useValue: {
+            createPatient: jest.fn(),
+            getPatients: jest.fn(),
+            getPatientById: jest.fn(),
+          },
+        },
+      ],
     }).compile();
 
     service = module.get<PatientService>(PatientService);

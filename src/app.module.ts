@@ -5,10 +5,10 @@ import { PatientModule } from './modules/patient/patient.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ 
-    ConfigModule.forRoot({isGlobal:true}),
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     SequelizeModule.forRoot(DatabaseConfig),
-    PatientModule
+    PatientModule,
   ],
 })
 export class AppModule {}
