@@ -44,9 +44,6 @@ export class PatientModel extends Model<PatientModel> {
   @Column({ type: DataType.STRING })
   DriveStoragePath: string | null;
 
-  @Column({ type: DataType.JSON })
-  Paramaters: object;
-
   @Column({ type: DataType.STRING })
   status: string;
 }

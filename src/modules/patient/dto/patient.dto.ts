@@ -15,20 +15,16 @@ export class PatientInfoDto {
   @IsEmail() @IsNotEmpty() email: string;
   @IsString() @IsNotEmpty() dob: string;
 }
-
 export class StudyInfoDto {
   @IsString() @IsNotEmpty() StudyType: string;
   @IsString() @IsNotEmpty() studyDuration: string;
   @IsString() @IsNotEmpty() orientation: string;
 }
-
 export class StateInfoDto {
   @IsString() @IsNotEmpty() CreatedDate: string;
   @IsString() @IsNotEmpty() time: string;
   @IsString() @IsNotEmpty() duration: string;
-  @IsObject() @IsNotEmpty() Paramaters: Record<string, any>;
 }
-
 export class CreateStudyDto {
   @IsString() @IsNotEmpty() BleDevice: string;
 
@@ -46,7 +42,6 @@ export class CreateStudyDto {
 
   @IsString() @IsNotEmpty() status: string;
 }
-
 export class UpdateStudyDto {
   @IsString() @IsNotEmpty() BleDevice: string;
   @IsString() @IsNotEmpty() status: string;
