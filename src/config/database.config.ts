@@ -2,6 +2,7 @@ import { SequelizeModuleOptions } from '@nestjs/sequelize';
 import { PatientModel } from '../modules/patient/entities/patient.model';
 
 export function getDatabaseConfig(): SequelizeModuleOptions {
+  
   const isSSL = process.env.DB_SSL === 'true';
   return {
     dialect: 'postgres',
