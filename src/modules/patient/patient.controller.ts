@@ -7,7 +7,7 @@ import {
   UpdateStudyDto,
 } from './dto/patient.dto';
 
-@Controller('beatx-spoke/v1/patient')
+@Controller('patient-management/v1/patient')
 export class PatientController {
   constructor(private readonly patientService: PatientService) {}
 

@@ -58,7 +58,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PatientController.prototype, "updatePatient", null);
 exports.PatientController = PatientController = __decorate([
-    (0, common_1.Controller)('beatx-spoke/v1/patient'),
+    (0, common_1.Controller)('patient-management/v1/patient'),
     __metadata("design:paramtypes", [patient_service_1.PatientService])
 ], PatientController);
 //# sourceMappingURL=patient.controller.js.map
