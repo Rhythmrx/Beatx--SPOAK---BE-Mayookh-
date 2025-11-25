@@ -11,8 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PatientModel = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const device_model_1 = require("./device.model");
 let PatientModel = class PatientModel extends sequelize_typescript_1.Model {
     BleDevice;
+    deviceId;
+    device;
     firstName;
     lastName;
     mobile;
@@ -33,6 +36,15 @@ __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
     __metadata("design:type", String)
 ], PatientModel.prototype, "BleDevice", void 0);
+__decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => device_model_1.DeviceModel),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
+    __metadata("design:type", Number)
+], PatientModel.prototype, "deviceId", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => device_model_1.DeviceModel),
+    __metadata("design:type", device_model_1.DeviceModel)
+], PatientModel.prototype, "device", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
     __metadata("design:type", String)

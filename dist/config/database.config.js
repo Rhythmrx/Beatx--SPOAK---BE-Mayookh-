@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDatabaseConfig = getDatabaseConfig;
 const patient_model_1 = require("../modules/patient/entities/patient.model");
+const device_model_1 = require("../modules/patient/entities/device.model");
 function getDatabaseConfig() {
     const isSSL = process.env.DB_SSL === 'true';
     return {
@@ -14,7 +15,7 @@ function getDatabaseConfig() {
         database: process.env.DB_NAME,
         autoLoadModels: true,
         synchronize: true,
-        models: [patient_model_1.PatientModel],
+        models: [patient_model_1.PatientModel, device_model_1.DeviceModel],
         logging: false,
         ...(isSSL && {
             dialectOptions: {

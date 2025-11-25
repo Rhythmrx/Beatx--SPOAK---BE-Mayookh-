@@ -12,38 +12,43 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PatientRepository = void 0;
+exports.DeviceRepository = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
-const patient_model_1 = require("../entities/patient.model");
-let PatientRepository = class PatientRepository {
-    patientModel;
-    constructor(patientModel) {
-        this.patientModel = patientModel;
+const device_model_1 = require("../entities/device.model");
+let DeviceRepository = class DeviceRepository {
+    deviceModel;
+    constructor(deviceModel) {
+        this.deviceModel = deviceModel;
     }
-    async create(patient) {
-        return this.patientModel.create(patient);
+    create(data) {
+        return this.deviceModel.create(data);
     }
-    async findOne(where) {
-        return await this.patientModel.findOne({ where });
+    findByBleDevice(bleDevice) {
+        return this.deviceModel.findOne({ where: { bleDevice } });
     }
-    async updateByBleDevice(BleDevice, updateData) {
-        const [rowsUpdated, [updatedPatient]] = await this.patientModel.update(updateData, {
-            where: { BleDevice },
-            returning: true,
-            fields: ['status', 'DriveStoragePath'],
+    assignDevice(deviceId, patientId) {
+        return this.deviceModel.update({
+            isAssigned: true,
+            assignedPatientId: patientId,
+        }, { where: { id: deviceId } });
+    }
+    releaseDevice(deviceId) {
+        return this.deviceModel.update({
+            isAssigned: false,
+            assignedPatientId: null,
+        }, { where: { id: deviceId } });
+    }
+    findExistingDevices(bleDevices) {
+        return this.deviceModel.findAll({
+            where: { bleDevice: bleDevices },
         });
-        const updated = updatedPatient.get();
-        return {
-            DriveStoragePath: updated.DriveStoragePath,
-            status: updated.status,
-        };
     }
 };
-exports.PatientRepository = PatientRepository;
-exports.PatientRepository = PatientRepository = __decorate([
+exports.DeviceRepository = DeviceRepository;
+exports.DeviceRepository = DeviceRepository = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, sequelize_1.InjectModel)(patient_model_1.PatientModel)),
+    __param(0, (0, sequelize_1.InjectModel)(device_model_1.DeviceModel)),
     __metadata("design:paramtypes", [Object])
-], PatientRepository);
-//# sourceMappingURL=patient.repository.js.map
+], DeviceRepository);
+//# sourceMappingURL=device.repository.js.map

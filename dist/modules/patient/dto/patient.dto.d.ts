@@ -31,3 +31,9 @@ export declare class UpdateStudyDto {
 export declare class ListStudyDto {
     BleDevice: string;
 }
+export declare class DeviceItemDto {
+    bleDevice: string;
+}
+export declare class AddDeviceBatchDto {
+    devices: DeviceItemDto[];
+}

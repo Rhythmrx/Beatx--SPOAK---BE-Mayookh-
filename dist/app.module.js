@@ -26,7 +26,7 @@ exports.AppModule = AppModule = __decorate([
             sequelize_1.SequelizeModule.forRootAsync({
                 useFactory: () => (0, database_config_1.getDatabaseConfig)(),
             }),
-            patient_module_1.PatientModule,
+            patient_module_1.PatientModule
         ],
         controllers: [app_controller_1.AppController],
     })

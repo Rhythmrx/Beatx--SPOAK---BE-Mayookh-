@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListStudyDto = exports.UpdateStudyDto = exports.CreateStudyDto = exports.StateInfoDto = exports.StudyInfoDto = exports.PatientInfoDto = void 0;
+exports.AddDeviceBatchDto = exports.DeviceItemDto = exports.ListStudyDto = exports.UpdateStudyDto = exports.CreateStudyDto = exports.StateInfoDto = exports.StudyInfoDto = exports.PatientInfoDto = void 0;
 const class_validator_1 = require("class-validator");
 const class_transformer_1 = require("class-transformer");
 class PatientInfoDto {
@@ -156,4 +156,23 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], ListStudyDto.prototype, "BleDevice", void 0);
+class DeviceItemDto {
+    bleDevice;
+}
+exports.DeviceItemDto = DeviceItemDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], DeviceItemDto.prototype, "bleDevice", void 0);
+class AddDeviceBatchDto {
+    devices;
+}
+exports.AddDeviceBatchDto = AddDeviceBatchDto;
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => DeviceItemDto),
+    __metadata("design:type", Array)
+], AddDeviceBatchDto.prototype, "devices", void 0);
 //# sourceMappingURL=patient.dto.js.map

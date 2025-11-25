@@ -1,5 +1,6 @@
 import { SequelizeModuleOptions } from '@nestjs/sequelize';
 import { PatientModel } from '../modules/patient/entities/patient.model';
+import { DeviceModel } from 'src/modules/patient/entities/device.model';
 
 export function getDatabaseConfig(): SequelizeModuleOptions {
   
@@ -15,7 +16,7 @@ export function getDatabaseConfig(): SequelizeModuleOptions {
 
     autoLoadModels: true,
     synchronize: true,
-    models: [PatientModel],
+    models: [PatientModel,DeviceModel],
     logging: false,
 
     ...(isSSL && {

@@ -4,6 +4,7 @@ import {
   IsEmail,
   IsObject,
   ValidateNested,
+  IsArray,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -50,4 +51,16 @@ export class UpdateStudyDto {
 
 export class ListStudyDto {
   @IsString() @IsNotEmpty() BleDevice: string;
+}
+export class DeviceItemDto {
+  @IsString()
+  @IsNotEmpty()
+  bleDevice: string;
+}
+
+export class AddDeviceBatchDto {
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => DeviceItemDto)
+  devices: DeviceItemDto[];
 }

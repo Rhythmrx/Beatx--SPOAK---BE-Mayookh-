@@ -20,6 +20,9 @@ let PatientService = class PatientService {
     async add(payload) {
         return await this.patientUseCase.execute(payload);
     }
+    async addDevice(payload) {
+        return await this.patientUseCase.addDevices(payload.devices);
+    }
     async list(payload) {
         return await this.patientUseCase.listexecute(payload);
     }

@@ -2,20 +2,25 @@ import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
 import { PatientService } from './patient.service';
 import { ResponseHandler } from 'src/common/utils/response-handler';
 import {
+  AddDeviceBatchDto,
   CreateStudyDto,
   ListStudyDto,
   UpdateStudyDto,
 } from './dto/patient.dto';
-
-@Controller('patient-management/v1/patient')
+@Controller('patient-management/v1')
 export class PatientController {
   constructor(private readonly patientService: PatientService) {}
-
-  @Post()
+  @Post('patient')
   async addPatient(@Body() payload: CreateStudyDto) {
     const data = await this.patientService.add(payload);
     return ResponseHandler.success(data, 'Patient created successfully');
   }
+  @Post('device')
+  async addDevice(@Body() payload: AddDeviceBatchDto) {
+    const data = await this.patientService.addDevice(payload);
+    return ResponseHandler.success(data, 'Devices processed successfully');
+  }
+
   @Get()
   async listPatient(@Body() payload: ListStudyDto) {
     const data = await this.patientService.list(payload);

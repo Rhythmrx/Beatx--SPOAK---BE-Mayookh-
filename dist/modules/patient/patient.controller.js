@@ -26,6 +26,10 @@ let PatientController = class PatientController {
         const data = await this.patientService.add(payload);
         return response_handler_1.ResponseHandler.success(data, 'Patient created successfully');
     }
+    async addDevice(payload) {
+        const data = await this.patientService.addDevice(payload);
+        return response_handler_1.ResponseHandler.success(data, 'Devices processed successfully');
+    }
     async listPatient(payload) {
         const data = await this.patientService.list(payload);
         return response_handler_1.ResponseHandler.success(data, 'Patient listed successfully');
@@ -37,12 +41,19 @@ let PatientController = class PatientController {
 };
 exports.PatientController = PatientController;
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('patient'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [patient_dto_1.CreateStudyDto]),
     __metadata("design:returntype", Promise)
 ], PatientController.prototype, "addPatient", null);
+__decorate([
+    (0, common_1.Post)('device'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [patient_dto_1.AddDeviceBatchDto]),
+    __metadata("design:returntype", Promise)
+], PatientController.prototype, "addDevice", null);
 __decorate([
     (0, common_1.Get)(),
     __param(0, (0, common_1.Body)()),
@@ -58,7 +69,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PatientController.prototype, "updatePatient", null);
 exports.PatientController = PatientController = __decorate([
-    (0, common_1.Controller)('patient-management/v1/patient'),
+    (0, common_1.Controller)('patient-management/v1'),
     __metadata("design:paramtypes", [patient_service_1.PatientService])
 ], PatientController);
 //# sourceMappingURL=patient.controller.js.map

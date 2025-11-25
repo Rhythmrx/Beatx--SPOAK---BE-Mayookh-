@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { PatientModel } from '../entities/patient.model';
-
+import { PatientModel } from '../entities/patient.model';  
 @Injectable()
 export class PatientRepository {
   constructor(
@@ -12,7 +11,7 @@ export class PatientRepository {
     return this.patientModel.create(patient);
   }
   async findOne(where: any): Promise<PatientModel | null> {
-    return this.patientModel.findOne({ where });
+    return await this.patientModel.findOne({ where });
   }
   async updateByBleDevice(
     BleDevice: string,
@@ -32,4 +31,6 @@ export class PatientRepository {
       status: updated.status,
     };
   }
+
+
 }

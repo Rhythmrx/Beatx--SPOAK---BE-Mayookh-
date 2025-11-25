@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PatientUseCase } from './usecases/patient.usecase';
 import {
+  AddDeviceBatchDto,
   CreateStudyDto,
   ListStudyDto,
   UpdateStudyDto,
@@ -12,6 +13,10 @@ export class PatientService {
   async add(payload: CreateStudyDto) {
     return await this.patientUseCase.execute(payload);
   }
+ async addDevice(payload: AddDeviceBatchDto) {
+  return await this.patientUseCase.addDevices(payload.devices);
+}
+
   async list(payload: ListStudyDto) {
     return await this.patientUseCase.listexecute(payload);
   }

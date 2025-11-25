@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PatientModule } from './modules/patient/patient.module';
 import { AppController } from './app.controller';
 import { getDatabaseConfig } from './config/database.config';
+import { DeviceModel } from './modules/patient/entities/device.model';
 
 
 @Module({
@@ -17,7 +18,7 @@ import { getDatabaseConfig } from './config/database.config';
       useFactory: () => getDatabaseConfig(),
     }),
 
-    PatientModule,
+    PatientModule
   ],
   controllers: [AppController],
 })
