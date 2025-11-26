@@ -21,12 +21,12 @@ export class PatientController {
     return ResponseHandler.success(data, 'Devices processed successfully');
   }
 
-  @Get()
+  @Get('patient')
   async listPatient(@Body() payload: ListStudyDto) {
     const data = await this.patientService.list(payload);
     return ResponseHandler.success(data, 'Patient listed successfully');
   }
-  @Patch()
+  @Patch('patient')
   async updatePatient(@Body() payload: UpdateStudyDto) {
     const data = await this.patientService.update(payload);
     return ResponseHandler.success(data, 'Patient study updated successfully');

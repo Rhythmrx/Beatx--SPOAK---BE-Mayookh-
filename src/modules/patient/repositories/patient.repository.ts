@@ -8,6 +8,7 @@ export class PatientRepository {
     private patientModel: typeof PatientModel,
   ) {}
   async create(patient: any): Promise<PatientModel> {
+
     return this.patientModel.create(patient);
   }
   async findOne(where: any): Promise<PatientModel | null> {

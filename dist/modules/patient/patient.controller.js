@@ -55,14 +55,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PatientController.prototype, "addDevice", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('patient'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [patient_dto_1.ListStudyDto]),
     __metadata("design:returntype", Promise)
 ], PatientController.prototype, "listPatient", null);
 __decorate([
-    (0, common_1.Patch)(),
+    (0, common_1.Patch)('patient'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [patient_dto_1.UpdateStudyDto]),

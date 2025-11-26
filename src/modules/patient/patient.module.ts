@@ -15,9 +15,7 @@ import { DeviceRepository } from './repositories/device.repository';
   imports: [
     SequelizeModule.forFeature([PatientModel, DeviceModel])   
   ],
-
   controllers: [PatientController],
-
   providers: [
     PatientService,
     PatientRepository,
@@ -25,7 +23,6 @@ import { DeviceRepository } from './repositories/device.repository';
     DeviceRepository,
     DeviceRepository   
   ],
-
   exports: [
     PatientRepository,
     DeviceRepository,
