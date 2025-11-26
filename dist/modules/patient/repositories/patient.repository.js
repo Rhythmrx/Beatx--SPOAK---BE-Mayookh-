@@ -25,7 +25,13 @@ let PatientRepository = class PatientRepository {
         return this.patientModel.create(patient);
     }
     async findOne(where) {
-        return await this.patientModel.findOne({ where });
+        return await this.patientModel.findOne({
+            where: {
+                ...where,
+                DriveStoragePath: null,
+            },
+            order: [['createdAt', 'ASC']],
+        });
     }
     async updateByBleDevice(BleDevice, updateData) {
         const [rowsUpdated, [updatedPatient]] = await this.patientModel.update(updateData, {

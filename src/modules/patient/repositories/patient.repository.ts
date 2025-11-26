@@ -11,9 +11,16 @@ export class PatientRepository {
 
     return this.patientModel.create(patient);
   }
-  async findOne(where: any): Promise<PatientModel | null> {
-    return await this.patientModel.findOne({ where });
-  }
+ async findOne(where: any): Promise<PatientModel | null> {
+  return await this.patientModel.findOne({
+    where: {
+      ...where,
+      DriveStoragePath: null,
+    },
+     order: [['createdAt', 'ASC']], 
+  });
+}
+
   async updateByBleDevice(
     BleDevice: string,
     updateData: Partial<{ status: string; DriveStoragePath: string }>,
