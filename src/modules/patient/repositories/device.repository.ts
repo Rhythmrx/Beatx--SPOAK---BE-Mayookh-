@@ -41,6 +41,10 @@ export class DeviceRepository {
     where: { bleDevice: bleDevices },
   });
 }
+async update(id: number, data: any) {
+  return this.deviceModel.update(data, { where: { id } });
+}
+
 
   
 

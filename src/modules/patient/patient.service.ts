@@ -23,4 +23,7 @@ export class PatientService {
   async update(payload: UpdateStudyDto) {
     return await this.patientUseCase.update(payload);
   }
+  async terminate(query:any){
+    return await this.patientUseCase.terminate(query)
+  }
 }

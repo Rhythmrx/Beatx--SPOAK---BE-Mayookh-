@@ -38,6 +38,10 @@ let PatientController = class PatientController {
         const data = await this.patientService.update(payload);
         return response_handler_1.ResponseHandler.success(data, 'Patient study updated successfully');
     }
+    async terminatePatient(query) {
+        const data = await this.patientService.terminate(query);
+        return response_handler_1.ResponseHandler.success(data, 'Patient study terminated  successfully');
+    }
 };
 exports.PatientController = PatientController;
 __decorate([
@@ -68,6 +72,13 @@ __decorate([
     __metadata("design:paramtypes", [patient_dto_1.UpdateStudyDto]),
     __metadata("design:returntype", Promise)
 ], PatientController.prototype, "updatePatient", null);
+__decorate([
+    (0, common_1.Patch)('terminate-info'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], PatientController.prototype, "terminatePatient", null);
 exports.PatientController = PatientController = __decorate([
     (0, common_1.Controller)('patient-management/v1'),
     __metadata("design:paramtypes", [patient_service_1.PatientService])

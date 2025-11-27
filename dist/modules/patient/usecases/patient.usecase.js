@@ -89,6 +89,29 @@ let PatientUseCase = class PatientUseCase {
             createdCount: created.length,
         };
     }
+    async terminate(query) {
+        console.log('queryyyy', query);
+        const { BleDevice } = query;
+        const patient = await this.patientRepository.findOne({ BleDevice });
+        if (!patient) {
+            throw new common_1.NotFoundException('Patient not found');
+        }
+        const deviceId = patient.dataValues.deviceId;
+        const device = await this.deviceRepository.findByBleDevice(BleDevice);
+        if (!device) {
+            throw new common_1.NotFoundException('Device not found for this patient');
+        }
+        await this.patientRepository.updateByBleDevice(BleDevice, {
+            status: 'Terminated',
+        });
+        await this.deviceRepository.update(deviceId, {
+            assignedPatientId: null,
+            isAssigned: false,
+        });
+        return {
+            message: 'Patient study terminated successfully',
+        };
+    }
 };
 exports.PatientUseCase = PatientUseCase;
 exports.PatientUseCase = PatientUseCase = __decorate([

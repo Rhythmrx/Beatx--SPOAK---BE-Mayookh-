@@ -29,6 +29,9 @@ let PatientService = class PatientService {
     async update(payload) {
         return await this.patientUseCase.update(payload);
     }
+    async terminate(query) {
+        return await this.patientUseCase.terminate(query);
+    }
 };
 exports.PatientService = PatientService;
 exports.PatientService = PatientService = __decorate([

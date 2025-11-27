@@ -44,6 +44,9 @@ let DeviceRepository = class DeviceRepository {
             where: { bleDevice: bleDevices },
         });
     }
+    async update(id, data) {
+        return this.deviceModel.update(data, { where: { id } });
+    }
 };
 exports.DeviceRepository = DeviceRepository;
 exports.DeviceRepository = DeviceRepository = __decorate([

@@ -89,5 +89,35 @@ async addDevices(devices: { bleDevice: string }[]) {
     createdCount: created.length,
   };
 }
+async terminate(query: any) {
+  console.log('queryyyy',query)
+  const { BleDevice } = query;
+  const patient = await this.patientRepository.findOne({ BleDevice });
+  if (!patient) {
+    throw new NotFoundException('Patient not found');
+  }
+
+  const deviceId = patient.dataValues.deviceId;
+
+
+  const device = await this.deviceRepository.findByBleDevice(BleDevice);
+  if (!device) {
+    throw new NotFoundException('Device not found for this patient');
+  }
+  await this.patientRepository.updateByBleDevice(BleDevice, {
+    status: 'Terminated',
+  });
+
+  await this.deviceRepository.update(deviceId, {
+    assignedPatientId: null,
+    isAssigned: false,
+  });
+
+  return {
+    message: 'Patient study terminated successfully',
+  };
+}
+
+
 
 }

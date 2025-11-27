@@ -6,7 +6,6 @@ import { AppController } from './app.controller';
 import { getDatabaseConfig } from './config/database.config';
 import { DeviceModel } from './modules/patient/entities/device.model';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -15,10 +14,14 @@ import { DeviceModel } from './modules/patient/entities/device.model';
     }),
 
     SequelizeModule.forRootAsync({
-      useFactory: () => getDatabaseConfig(),
+      useFactory: () => ({
+        ...getDatabaseConfig(),
+        autoLoadModels: true,
+        synchronize: true,
+      }),
     }),
 
-    PatientModule
+    PatientModule,
   ],
   controllers: [AppController],
 })

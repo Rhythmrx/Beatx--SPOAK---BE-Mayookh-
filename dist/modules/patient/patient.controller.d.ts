@@ -23,4 +23,9 @@ export declare class PatientController {
         message: string;
         data: any;
     }>;
+    terminatePatient(query: any): Promise<{
+        status: string;
+        message: string;
+        data: any;
+    }>;
 }

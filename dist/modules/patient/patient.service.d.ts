@@ -13,4 +13,7 @@ export declare class PatientService {
         DriveStoragePath: string | null;
         status: string;
     }>;
+    terminate(query: any): Promise<{
+        message: string;
+    }>;
 }

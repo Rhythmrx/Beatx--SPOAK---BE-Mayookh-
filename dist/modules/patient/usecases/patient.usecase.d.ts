@@ -17,4 +17,7 @@ export declare class PatientUseCase {
         createdDevices: any[];
         createdCount: number;
     }>;
+    terminate(query: any): Promise<{
+        message: string;
+    }>;
 }

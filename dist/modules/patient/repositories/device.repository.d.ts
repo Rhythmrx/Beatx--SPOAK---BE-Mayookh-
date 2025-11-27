@@ -7,4 +7,5 @@ export declare class DeviceRepository {
     assignDevice(deviceId: number, patientId: number): Promise<[affectedCount: number]>;
     releaseDevice(deviceId: number): Promise<[affectedCount: number]>;
     findExistingDevices(bleDevices: string[]): Promise<DeviceModel[]>;
+    update(id: number, data: any): Promise<[affectedCount: number]>;
 }
