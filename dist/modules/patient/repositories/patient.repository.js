@@ -29,16 +29,24 @@ let PatientRepository = class PatientRepository {
             where: {
                 ...where,
                 DriveStoragePath: null,
+                status: "Pending"
             },
             order: [['createdAt', 'ASC']],
         });
     }
-    async updateByBleDevice(BleDevice, updateData) {
+    async updateByBleDevice(BleDevice, updateData, patientId) {
+        const whereCondition = {
+            BleDevice,
+            ...(patientId ? { id: patientId, status: "Pending" } : {})
+        };
         const [rowsUpdated, [updatedPatient]] = await this.patientModel.update(updateData, {
-            where: { BleDevice },
+            where: whereCondition,
             returning: true,
-            fields: ['status', 'DriveStoragePath'],
+            fields: ["status", "DriveStoragePath"],
         });
+        if (!updatedPatient) {
+            return { DriveStoragePath: null, status: "not-updated" };
+        }
         const updated = updatedPatient.get();
         return {
             DriveStoragePath: updated.DriveStoragePath,

@@ -23,7 +23,7 @@ export class PatientUseCase {
         assignedPatientId: null,
       });
     }
-    console.log(device)
+
     if (device.dataValues.isAssigned) {
       throw new ConflictException(
         `Device ${payload.BleDevice} is already assigned to another patient.`,
@@ -90,8 +90,7 @@ async addDevices(devices: { bleDevice: string }[]) {
   };
 }
 async terminate(query: any) {
-  console.log('queryyyy',query)
-  const { BleDevice } = query;
+  const { BleDevice,patientId } = query;
   const patient = await this.patientRepository.findOne({ BleDevice });
   if (!patient) {
     throw new NotFoundException('Patient not found');
@@ -105,8 +104,8 @@ async terminate(query: any) {
     throw new NotFoundException('Device not found for this patient');
   }
   await this.patientRepository.updateByBleDevice(BleDevice, {
-    status: 'Terminated',
-  });
+    status: 'Terminated'
+  },patientId);
 
   await this.deviceRepository.update(deviceId, {
     assignedPatientId: null,

@@ -7,7 +7,7 @@ export declare class PatientRepository {
     updateByBleDevice(BleDevice: string, updateData: Partial<{
         status: string;
         DriveStoragePath: string;
-    }>): Promise<{
+    }>, patientId?: string): Promise<{
         DriveStoragePath: string | null;
         status: string;
     }>;
